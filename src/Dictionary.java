@@ -13,7 +13,7 @@ public class Dictionary implements IDictionary{
     }
     @Override
     public boolean insert(int key) {
-        int index = hashFunction.hash(key);
+        int index = hashFunction.hash(key)%(size*size);
         if(hashedTable[index] != null){
             return true;
         }
@@ -40,4 +40,7 @@ public class Dictionary implements IDictionary{
         hashedTable = new Integer[size*size];
     }
 
+    public IHashFunction getHashFunction(){
+    	return this.hashFunction;
+    }
 }
