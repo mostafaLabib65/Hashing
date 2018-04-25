@@ -12,6 +12,7 @@ public class HashON {
     DictionaryON dictionary;
     IHashFunction hashFunction;
     ArrayList<Integer> elements;
+    private int sumOFn2 =0;
 
     public HashON(File file){
         this.file = file;
@@ -21,6 +22,7 @@ public class HashON {
     }
 
     public int hashFile(){
+    	sumOFn2=0;
         int numberOfIterations = 1;
         while (true){
         	boolean flag = false;
@@ -40,12 +42,17 @@ public class HashON {
 
                 }else{
                 	System.out.println('('+"sum of N^2 ="+" " +sumOFnSQR+',' + "N = "+ elements.size()+" " + "4N ="+(4*elements.size())+')'+" "+')');
+                	sumOFn2=sumOFnSQR;
                 	break;
                 }
                 
         }
+
         dictionary.HashTableTwo();
         return  numberOfIterations;
+    }
+    public int getSum (){
+    	return sumOFn2;
     }
 
    

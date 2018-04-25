@@ -28,11 +28,12 @@ public class MainTest {
                // Hash hash = new Hash(file);
             	HashON hash = new HashON(file);
                 numberOfHashFunctions = hash.hashFile();
-                average = average + numberOfHashFunctions;
+         average = average+hash.getSum();
+         //       average = average + numberOfHashFunctions;
                // System.out.print(numberOfHashFunctions + " , ");
             }
             System.out.println();
-         //   System.out.println("Average : " + average / 10);
+           System.out.println("Average of N^2 : " + average / 10);
             System.out.println("-----------------------------------------------------------------------------------------");
         }
     }
