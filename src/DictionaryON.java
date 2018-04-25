@@ -54,10 +54,12 @@ public class DictionaryON implements IDictionary{
     
     
     
-public void HashTableTwo(){
+public void HashTableTwo(int size){
 	
 	for(int i=0;i<hashTable.size();i++){
-		hashFunction2 = new MatrixMethod();
+		hashFunction2 = new MatrixMethod(hashTable.get(i).size());
+		//System.out.println(hashTable.size()+"siz");
+		System.out.println(hashTable.get(i).size());
 		collisionsTable[i]=new Dictionary(hashFunction2,hashTable.get(i).size());
 		int j=0;
             while(j>hashTable.get(i).size()){
