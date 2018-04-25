@@ -14,7 +14,7 @@ public class Dictionary implements IDictionary{
     @Override
     public boolean insert(int key) {
         int index = hashFunction.hash(key)%(size*size);
-        if(hashedTable[index] != null){
+        if(hashedTable[index] != null && hashedTable[index] != key){
             return true;
         }
         hashedTable[index] = key;

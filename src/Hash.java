@@ -1,74 +1,71 @@
+import com.sun.org.apache.xpath.internal.SourceTree;
+
 import java.io.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Hash {
     File file;
     IDictionary dictionary;
     IHashFunction hashFunction;
+    ArrayList<Integer> elements;
     public Hash(File file){
         this.file = file;
-        hashFunction = new MatrixMethod();
-        dictionary = new Dictionary(hashFunction,getSize());
+        elements = getElements(file);
+        hashFunction = new MatrixMethod(elements.size());
+        dictionary = new Dictionary(hashFunction,elements.size());
     }
 
     public int hashFile(){
-        int numberOfIterations = 0;
+        int numberOfIterations = 1;
+        int flag;
         while (true){
-
-            String line = null;
-            boolean flag = false;
-            try {
-                FileReader fileReader = new FileReader(file);
-
-                BufferedReader bufferedReader = new BufferedReader(fileReader);
-
-                while((line = bufferedReader.readLine()) != null) {
-                    boolean collision = dictionary.insert(Integer.parseInt(line));
-                    if (collision == true){
-                        dictionary.clear();
-                        dictionary.newHashFunc();
-                        flag = true;
-                        break;
-                    }
-                }
-                if (flag == true){
-                    numberOfIterations ++;
-                }
-                else{
+            flag = 0;
+            for (int i = 0; i < elements.size(); i++){
+                boolean collision =  dictionary.insert(elements.get(i));
+                if(collision == true){
+                    dictionary.clear();
+                    dictionary.newHashFunc();
+                    numberOfIterations++;
+                    flag ++;
                     break;
                 }
-                bufferedReader.close();
             }
-            catch(FileNotFoundException ex) {
-                System.out.println("Error reading file '" + file + "'");
-            }
-            catch(IOException ex) {
-                System.out.println(" Error reading file '" + file + "'");
+            if(flag == 0){
+                break;
             }
         }
-        return  numberOfIterations;
+        return numberOfIterations;
     }
-
-    private int getSize(){
+    private ArrayList getElements(File file){
+        ArrayList<Integer> elemnts = new ArrayList<>();
+        Set<Integer> elements = new HashSet<>();
         String line = null;
-        int size = 0;
+        boolean flag = false;
         try {
             FileReader fileReader = new FileReader(file);
-
             BufferedReader bufferedReader = new BufferedReader(fileReader);
 
             while((line = bufferedReader.readLine()) != null) {
-                size++;
+                String[] splited = line.split(",");
+                for (int i = 0; i < splited.length; i++){
+                    int number = Integer.parseInt(splited[i]);
+                        elements.add(number);
+                    }
             }
-
             bufferedReader.close();
         }
         catch(FileNotFoundException ex) {
             System.out.println("Error reading file '" + file + "'");
         }
         catch(IOException ex) {
-            System.out.println("Error reading file '" + file + "'");
+            System.out.println(" Error reading file '" + file + "'");
         }
-        return size;
+        for (Integer key : elements)  {
+            elemnts.add(key);
+        }
+        return elemnts;
     }
-   
+
 }
