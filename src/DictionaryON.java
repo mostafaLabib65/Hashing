@@ -28,7 +28,6 @@ public class DictionaryON implements IDictionary{
     @Override
     public boolean insert(int key) {
         int index = hashFunction.hash(key)%(size);
-        
         hashTable.get(index).add(key);
         return false;
     }
@@ -49,17 +48,17 @@ public class DictionaryON implements IDictionary{
     @Override
     public void clear() {
         //hashedTable1 = new Integer[size*size];
+    	hashTable.clear();
+    	this.fillArraylistWithN();
     }
     
     
     
     
-public void HashTableTwo(int size){
-	
+public void HashTableTwo(){
+	int numofiterations= 0;
 	for(int i=0;i<hashTable.size();i++){
 		hashFunction2 = new MatrixMethod(hashTable.get(i).size());
-		//System.out.println(hashTable.size()+"siz");
-		System.out.println(hashTable.get(i).size());
 		collisionsTable[i]=new Dictionary(hashFunction2,hashTable.get(i).size());
 		int j=0;
             while(j>hashTable.get(i).size()){
@@ -74,6 +73,7 @@ public void HashTableTwo(int size){
                 }
             	
             	
+                
             }
 		
 	}

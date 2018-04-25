@@ -4,11 +4,18 @@ public class MatrixMethod implements IHashFunction {
     private int[][] hashMatrix;
     private int size;
     public MatrixMethod(int size){
+  
         this.size = size;
     }
     @Override
     public void generateHashMatrix() {
-        int rows = (int)Math.ceil(Math.log(size)/Math.log(2));
+    	
+    	 int rows=0;
+    	if(size != 0){
+    		
+    	
+         rows = (int)Math.ceil(Math.log(size)/Math.log(2));}
+    	
         int[][] hashMatrix = new int[rows][32];
         Random random = new Random(System.nanoTime());
         for(int i = 0; i < rows; i++){

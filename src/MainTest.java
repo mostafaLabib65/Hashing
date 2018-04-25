@@ -29,10 +29,10 @@ public class MainTest {
             	HashON hash = new HashON(file);
                 numberOfHashFunctions = hash.hashFile();
                 average = average + numberOfHashFunctions;
-                System.out.print(numberOfHashFunctions + " , ");
+               // System.out.print(numberOfHashFunctions + " , ");
             }
             System.out.println();
-            System.out.println("Average : " + average / 10);
+         //   System.out.println("Average : " + average / 10);
             System.out.println("-----------------------------------------------------------------------------------------");
         }
     }

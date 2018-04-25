@@ -37,11 +37,14 @@ public class HashON {
                     dictionary.clear();
                     dictionary.newHashFunc();
                     flag = true;
+
                 }else{
+                	System.out.println('('+"sum of N^2 ="+" " +sumOFnSQR+',' + "N = "+ elements.size()+" " + "4N ="+(4*elements.size())+')'+" "+')');
                 	break;
                 }
+                
         }
-        dictionary.HashTableTwo(elements.size());
+        dictionary.HashTableTwo();
         return  numberOfIterations;
     }
 
